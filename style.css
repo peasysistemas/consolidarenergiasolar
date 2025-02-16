@@ -34,7 +34,7 @@ header {
 /* 🔹 Botão do menu hambúrguer */
 .menu-toggle {
   display: none;
-  font-size: 30px;
+  font-size: 32px;
   background: none;
   border: none;
   color: white;
@@ -55,10 +55,66 @@ header {
   height: 35px;
 }
 
+/* 🔹 Melhorando o Menu Mobile */
+@media (max-width: 768px) {
+  nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(24, 30, 80, 0.95);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.4s ease-in-out;
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  nav ul li {
+    margin: 15px 0;
+  }
+
+  nav ul li a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    display: block;
+    padding: 12px 0;
+    width: 100%;
+    transition: background 0.3s;
+  }
+
+  nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+  }
+
+  /* Exibir botão do menu */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Classe para exibir o menu deslizando */
+  .menu-open {
+    right: 0;
+  }
+}
+
 /* 🔹 Estilização do slider */
 .slider {
   width: 100%;
-  height: 700px;
+  max-height: 1000px;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -91,7 +147,7 @@ header {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Efeito de escurecimento */
+  background: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
   z-index: 1;
@@ -106,6 +162,7 @@ header {
   max-width: 1200px;
   z-index: 2;
   color: white;
+  padding: 40px 0;
 }
 
 /* 🔹 Texto do lado esquerdo */
@@ -114,29 +171,35 @@ header {
 }
 
 .texto h2 {
-  font-size: 32px;
+  font-size: 36px;
   margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .texto p {
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.6;
+  text-align: justify;
 }
 
 /* 🔹 Formulário do lado direito */
 .formulario {
+  align-items: center;
   width: 40%;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 25px;
   border-radius: 10px;
   text-align: center;
   backdrop-filter: blur(10px);
+  box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .formulario h3 {
   font-size: 24px;
   margin-bottom: 15px;
   color: #fff;
+  font-weight: bold;
 }
 
 /* 🔹 Estilização dos campos do formulário */
@@ -145,22 +208,31 @@ form {
   flex-direction: column;
 }
 
-form input {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: none;
+form input,
+form textarea {
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 5px;
   font-size: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 form button {
   background: #ffcc00;
   color: #181e50;
   font-size: 18px;
-  padding: 10px;
+  padding: 12px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 form button:hover {
@@ -171,6 +243,7 @@ form button:hover {
 @media (max-width: 768px) {
   .content {
     flex-direction: column;
+    align-items: center;
     text-align: center;
   }
 
@@ -178,72 +251,6 @@ form button:hover {
     width: 100%;
     margin-bottom: 20px;
   }
-}
-
-/* 🔹 Menu normal em telas grandes */
-@media (min-width: 769px) {
-  nav {
-    position: static; /* Remove a posição fixa */
-    right: auto;
-    width: auto;
-    height: auto;
-    display: flex; /* Mostra o menu */
-    align-items: center;
-  }
-
-  nav ul {
-    display: flex;
-  }
-
-  nav ul li {
-    margin: 0 15px;
-  }
-}
-
-/* 🔹 Esconde o menu fora da tela para mobile */
-@media (max-width: 768px) {
-  nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 250px;
-    height: 100vh;
-    background: #181e50;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: right 0.4s ease-in-out;
-  }
-
-  /* Exibir botão do menu */
-  .menu-toggle {
-    display: block;
-  }
-
-  /* Classe para exibir o menu deslizando */
-  .menu-open {
-    right: 0;
-  }
-}
-
-/* 🔹 Estilização do menu */
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  padding: 10px;
-  transition: color 0.3s;
-}
-
-nav ul li a:hover {
-  color: #f0f0f0;
 }
 
 /* 🔹 Ajuste para não cobrir o conteúdo */
