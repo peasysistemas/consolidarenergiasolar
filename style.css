@@ -72,14 +72,15 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
 }
 
 .slide {
-  min-width: 100%;
+  position: absolute;
+  width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
+  opacity: 0;
   transition: opacity 1s ease-in-out;
 }
 
@@ -124,15 +125,17 @@ header {
 /* 🔹 Formulário do lado direito */
 .formulario {
   width: 40%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2);
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+  backdrop-filter: blur(10px);
 }
 
 .formulario h3 {
   font-size: 24px;
   margin-bottom: 15px;
+  color: #fff;
 }
 
 /* 🔹 Estilização dos campos do formulário */
@@ -175,7 +178,6 @@ form button:hover {
     margin-bottom: 20px;
   }
 }
-
 
 /* 🔹 Menu normal em telas grandes */
 @media (min-width: 769px) {
@@ -245,7 +247,7 @@ nav ul li a:hover {
 
 /* 🔹 Ajuste para não cobrir o conteúdo */
 section {
-  min-height: 50vh;
+  min-height: 100vh;
 }
 
 /* 🔹 Rolagem suave */

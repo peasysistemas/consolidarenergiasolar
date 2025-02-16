@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Alternar a classe para reduzir o cabeçalho ao rolar
+    // 🔹 Alternar a classe para reduzir o cabeçalho ao rolar
     window.addEventListener("scroll", function () {
         let header = document.getElementById("header");
         if (window.scrollY > 50) {
@@ -9,25 +9,28 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Alternar visibilidade do menu no mobile com animação
+    // 🔹 Alternar visibilidade do menu no mobile com animação
     const menuToggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("menu");
 
     menuToggle.addEventListener("click", function () {
         menu.classList.toggle("menu-open");
     });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+    // 🔹 Slider automático com efeito de transição suave
     let slideIndex = 0;
-    const slides = document.querySelector(".slides");
-    const totalSlides = document.querySelectorAll(".slide").length;
+    const slides = document.querySelectorAll(".slide");
 
     function nextSlide() {
-        slideIndex = (slideIndex + 1) % totalSlides;
-        slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+        slides.forEach((slide, index) => {
+            slide.style.opacity = index === slideIndex ? "1" : "0";
+        });
+
+        slideIndex = (slideIndex + 1) % slides.length;
     }
 
     setInterval(nextSlide, 5000); // Muda a imagem a cada 5 segundos
-});
 
+    // Iniciar com a primeira imagem visível
+    nextSlide();
+});
