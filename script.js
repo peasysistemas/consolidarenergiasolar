@@ -18,3 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    let slideIndex = 0;
+    const slides = document.querySelector(".slides");
+    const totalSlides = document.querySelectorAll(".slide").length;
+
+    function nextSlide() {
+        slideIndex = (slideIndex + 1) % totalSlides;
+        slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
+    setInterval(nextSlide, 5000); // Muda a imagem a cada 5 segundos
+});
+
