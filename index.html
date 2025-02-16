@@ -1,98 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Empresa de Energia Solar</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consolida Energia Solar</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Cabeçalho -->
-  <header>
-    <div class="container">
-      <h1>Energia Solar</h1>
-      <nav>
+    <header id="header">
+        <div class="logo">
+            <img src="logo.png" alt="Logo Consolida">
+        </div>
+        <button class="menu-toggle" id="menu-toggle">☰</button> <!-- Botão do menu -->
+        <nav id="menu">
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#local">Onde Estamos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="inicio">
+        <h2>Bem-vindo ao Meu Novo Site</h2>
+        <p>Sua solução ideal para serviços de qualidade!</p>
+    </section>
+    
+    <section id="sobre">
+        <h2>Sobre Nós</h2>
+        <p>Conheça nossa história e compromisso com a excelência.</p>
+    </section>
+    
+    <section id="servicos">
+        <h2>Nossos Serviços</h2>
         <ul>
-          <li><a href="#intro">Sobre Nós</a></li>
-          <li><a href="#benefits">Benefícios</a></li>
-          <li><a href="#contact">Contato</a></li>
+            <li>Serviço A</li>
+            <li>Serviço B</li>
+            <li>Serviço C</li>
         </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Introdução -->
-  <section id="intro">
-    <div class="container intro-content">
-      <div class="intro-text">
-        <h2>Bem-vindo à nossa empresa</h2>
-        <p>
-          Somos especialistas em soluções de energia solar. Nossa missão é ajudar você a economizar
-          dinheiro enquanto contribui para um futuro sustentável.
-        </p>
-        <p>
-          Na SolarVida, oferecemos projetos personalizados que atendem às suas necessidades, garantindo
-          economia, sustentabilidade e inovação. Transforme sua energia e faça parte da revolução solar
-          conosco!
-        </p>
-      </div>
-      <div class="carousel">
-        <div class="carousel-images">
-          <img src="images/img1.jfif" alt="Sistema Solar 1">
-          <img src="images/img1.jfif" alt="Sistema Solar 2">
-          <img src="images/img1.jfif" alt="Sistema Solar 3">
+    </section>
+    
+    <section id="local">
+        <h2>Onde Estamos</h2>
+        <p>Visite-nos no endereço abaixo:</p>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.405442371639!2d-37.20327102611561!3d-6.72027986570365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7af834f3fbddb0f%3A0x57ed891f364bdbef!2sConsolida%20Energia%20Solar!5e0!3m2!1spt-BR!2sbr!4v1739729138234!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-      </div>
-    </div>
-  </section>
-  
-
-  <!-- Benefícios -->
-  <section id="benefits">
-    <div class="container">
-      <h2>Por que escolher energia solar?</h2>
-      <div class="benefit-grid">
-        <div class="benefit">
-          <h3>Economia</h3>
-          <p>Reduza sua conta de energia elétrica significativamente.</p>
-        </div>
-        <div class="benefit">
-          <h3>Sustentabilidade</h3>
-          <p>Ajude o meio ambiente com energia limpa e renovável.</p>
-        </div>
-        <div class="benefit">
-          <h3>Valorização</h3>
-          <p>Aumente o valor do seu imóvel com um sistema solar.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Formulário de Contato -->
-  <section id="contact">
-    <div class="container">
-      <h2>Entre em contato</h2>
-      <p>Preencha o formulário abaixo e entraremos em contato com você.</p>
-      <form action="#" method="POST">
-        <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="message">Mensagem:</label>
-        <textarea id="message" name="message" required></textarea>
-
-        <button type="submit">Enviar</button>
-      </form>
-    </div>
-  </section>
-  <!-- Botão do WhatsApp -->
-<a href="https://wa.me/5511999999999" class="whatsapp-button" target="_blank" title="Fale conosco no WhatsApp">
-    <img src="images/zap.png" alt="WhatsApp">
-  </a>
-  
-
-  <script src="js.js"></script>
+    </section>
+    
+    <section id="contato">
+        <h2>Entre em Contato</h2>
+        <form>
+            <input type="text" placeholder="Seu Nome" required>
+            <input type="email" placeholder="Seu Email" required>
+            <textarea placeholder="Sua Mensagem" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+        <a href="https://wa.me/seunumerowhatsapp" class="whatsapp">WhatsApp</a>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Consolida Energia Solar - Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>

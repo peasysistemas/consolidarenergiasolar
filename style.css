@@ -1,201 +1,132 @@
-/* Configurações gerais */
+/* 🔹 Configuração geral do site */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+  color: #333;
 }
 
-h1, h2, h3 {
-  margin: 0;
-}
-
-p {
-  margin: 0 0 10px;
-}
-
-.container {
-  width: 90%;
-  margin: 0 auto;
-}
-
+/* 🔹 Ajuste do cabeçalho */
 header {
-  background: #333;
-  color: white;
-  padding: 15px 0;
-}
-
-header .container {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-}
-
-header h1 {
-  margin: 0;
-}
-
-header nav ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-header nav ul li {
-  margin: 0 15px;
-}
-
-header nav ul li a {
+  padding: 10px 20px;
+  background-color: #181e50;
   color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-header nav ul li a:hover {
-  text-decoration: underline;
-}
-
-/* Seção de introdução */
-#intro {
-  padding: 50px 0;
-}
-
-.intro-content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap; /* Ajusta o layout em telas menores */
-}
-
-.intro-text {
-  flex: 1;
-  max-width: 50%; /* Texto ocupa metade da largura */
-}
-
-.intro-text h2 {
-  font-size: 2em;
-  margin-bottom: 15px;
-}
-
-.intro-text p {
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-
-/* Estilização do carrossel */
-.carousel {
-  flex: 1;
-  max-width: 50%; /* Carrossel ocupa metade da largura */
-  overflow: hidden;
-}
-
-.carousel-images {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.carousel-images img {
-  width: 100%;
-  border-radius: 8px; /* Bordas arredondadas */
-}
-
-/* Benefícios */
-#benefits {
-  background: #f9f9f9;
-  padding: 50px 0;
-}
-
-.benefit-grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap; /* Ajusta o layout em telas menores */
-}
-
-.benefit {
-  flex: 1;
-  background: white;
-  padding: 20px;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.benefit h3 {
-  margin-bottom: 10px;
-}
-
-/* Formulário de contato */
-#contact {
-  padding: 50px 0;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-form label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-form input, form textarea, form button {
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-form button {
-  background: #28a745;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-form button:hover {
-  background: #218838;
-}
-
-/* Botão do WhatsApp */
-.whatsapp-button {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  background-color: #25d366;
-  border-radius: 50%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 0;
+  width: 100%;
   z-index: 1000;
+  transition: all 0.3s;
+  min-height: 50px;
 }
 
-.whatsapp-button img {
-  width: 35px;
+/* 🔹 Estilização da logo */
+.logo img {
+  height: 50px;
+  width: auto;
+  transition: height 0.3s;
+}
+
+/* 🔹 Botão do menu hambúrguer */
+.menu-toggle {
+  display: none;
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 1100;
+}
+
+/* 🔹 Redução do cabeçalho ao rolar a página */
+.header-small {
+  padding: 5px 20px;
+}
+
+.header-small .logo img {
   height: 35px;
 }
 
-.whatsapp-button:hover {
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-  transform: scale(1.1);
-  transition: all 0.3s ease;
+/* 🔹 Menu normal em telas grandes */
+@media (min-width: 769px) {
+  nav {
+    position: static; /* Remove a posição fixa */
+    right: auto;
+    width: auto;
+    height: auto;
+    display: flex; /* Mostra o menu */
+    align-items: center;
+  }
+
+  nav ul {
+    display: flex;
+  }
+
+  nav ul li {
+    margin: 0 15px;
+  }
 }
 
-/* Responsividade */
+/* 🔹 Esconde o menu fora da tela para mobile */
 @media (max-width: 768px) {
-  .intro-content {
-    flex-direction: column; /* Empilha os elementos em telas menores */
-    text-align: center;
+  nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: #181e50;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.4s ease-in-out;
   }
 
-  .intro-text, .carousel {
-    max-width: 100%; /* Permite que ocupem 100% da largura */
+  /* Exibir botão do menu */
+  .menu-toggle {
+    display: block;
   }
 
-  .benefit-grid {
-    flex-direction: column; /* Benefícios em coluna em telas menores */
+  /* Classe para exibir o menu deslizando */
+  .menu-open {
+    right: 0;
   }
+}
+
+/* 🔹 Estilização do menu */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #f0f0f0;
+}
+
+/* 🔹 Ajuste para não cobrir o conteúdo */
+section {
+  padding: 100px 20px;
+  min-height: 100vh;
+}
+
+/* 🔹 Rolagem suave */
+html {
+  scroll-behavior: smooth;
 }
