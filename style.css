@@ -43,6 +43,7 @@ header {
   top: 15px;
   right: 20px;
   z-index: 1100;
+  margin-right: 20px;
 }
 
 /* 🔹 Redução do cabeçalho ao rolar a página */
