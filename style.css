@@ -14,14 +14,14 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #181e50;
+  background-color: #ffffff;
   color: white;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
   transition: all 0.3s;
-  min-height: 50px;
+  min-height: 20px;
 }
 
 /* 🔹 Estilização da logo */
