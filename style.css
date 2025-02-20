@@ -14,21 +14,35 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #ffffff;
+  background-color: #c0c6fa;
   color: white;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  transition: all 0.3s;
-  min-height: 20px;
+  transition: all 0.3s ease-in-out;
+  min-height: 50px;
 }
 
 /* 🔹 Estilização da logo */
 .logo img {
-  height: 50px;
+  height: 100px;
   width: auto;
   transition: height 0.3s;
+  margin-left: 50px;
+}
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 20px;
+}
+nav li a {
+  padding: 20px;
+  background-color: #181e50;
+  color: white;
+  margin-right: 10px;
+  border-radius: 10px;
+  text-decoration: none;
 }
 
 /* 🔹 Botão do menu hambúrguer */
@@ -40,10 +54,14 @@ header {
   color: white;
   cursor: pointer;
   position: absolute;
-  top: 15px;
+  top: 12px;
   right: 20px;
   z-index: 1100;
-  margin-right: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
 }
 
 /* 🔹 Redução do cabeçalho ao rolar a página */
@@ -52,7 +70,7 @@ header {
 }
 
 .header-small .logo img {
-  height: 35px;
+  height: 100px;
 }
 
 /* 🔹 Melhorando o Menu Mobile */
@@ -92,7 +110,7 @@ header {
     display: block;
     padding: 12px 0;
     width: 100%;
-    transition: background 0.3s;
+    transition: background 0.3s ease-in-out;
   }
 
   nav ul li a:hover {
@@ -114,7 +132,7 @@ header {
 /* 🔹 Estilização do slider */
 .slider {
   width: 100%;
-  max-height: 1000px;
+  height: 700px;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -168,7 +186,6 @@ header {
 /* 🔹 Texto do lado esquerdo */
 .texto {
   width: 50%;
-  margin-top: 20px;
 }
 
 .texto h2 {
@@ -193,13 +210,11 @@ header {
   backdrop-filter: blur(10px);
   box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease-in-out;
 }
 
-.formulario h3 {
-  font-size: 24px;
-  margin-bottom: 15px;
-  color: #fff;
-  font-weight: bold;
+.formulario:hover {
+  transform: translateY(-5px);
 }
 
 /* 🔹 Estilização dos campos do formulário */
@@ -233,6 +248,7 @@ form button {
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
+  transition: background 0.3s ease-in-out;
 }
 
 form button:hover {
@@ -261,11 +277,4 @@ section {
 /* 🔹 Rolagem suave */
 html {
   scroll-behavior: smooth;
-}
-.buttonzap img{
-  width: 70px;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 1500;
 }

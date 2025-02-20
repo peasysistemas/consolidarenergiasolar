@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 🔹 Slider automático com efeito de transição suave
     let slideIndex = 0;
     const slides = document.querySelectorAll(".slide");
+    let sliderInterval;
 
     function nextSlide() {
         slides.forEach((slide, index) => {
@@ -29,8 +30,28 @@ document.addEventListener("DOMContentLoaded", function () {
         slideIndex = (slideIndex + 1) % slides.length;
     }
 
-    setInterval(nextSlide, 5000); // Muda a imagem a cada 5 segundos
+    function startSlider() {
+        sliderInterval = setInterval(nextSlide, 5000); // Muda a imagem a cada 5 segundos
+    }
 
-    // Iniciar com a primeira imagem visível
-    nextSlide();
+    function stopSlider() {
+        clearInterval(sliderInterval);
+    }
+
+    // 🔹 Verifica se o usuário está na seção "Sobre"
+    function checkVisibility() {
+        const section = document.querySelector("#sobre");
+        const rect = section.getBoundingClientRect();
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+            startSlider();
+        } else {
+            stopSlider();
+        }
+    }
+
+    window.addEventListener("scroll", checkVisibility);
+    window.addEventListener("resize", checkVisibility);
+
+    // 🔹 Iniciar apenas quando visível
+    checkVisibility();
 });
