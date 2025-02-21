@@ -32,6 +32,28 @@ header {
   margin-left: 50px;
 }
 
+/* efeito no menu nav*/
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 20px;
+  background: linear-gradient(30deg, #0004f1, #feb47b);
+  border-radius: 25px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(12, 68, 250, 0.4);
+  scale: 1.2;
+}
+
 /* 🔹 Estilização do menu */
 .menu ul {
   display: flex;
@@ -40,7 +62,7 @@ header {
 }
 
 .menu li a {
-  padding: 20px;
+  padding:15px 20px;
   background-color: #181e50;
   color: white;
   margin-right: 10px;
@@ -435,3 +457,37 @@ html {
     color: white; /* Garante que o texto seja legível sobre o fundo */
   }
 }
+/* efeito botao zap footer */
+.botaozap {
+  width: 50px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+  z-index: 2000;
+}
+/* 🔹 Efeito pulsar */
+@keyframes pulsar {
+  0% {
+      transform: scale(1); /* Tamanho normal */
+  }
+  50% {
+      transform: scale(1.1); /* Aumenta o tamanho em 10% */
+  }
+  100% {
+      transform: scale(1); /* Volta ao tamanho normal */
+  }
+}
+
+/* 🔹 Aplicando o efeito à imagem */
+.botaozap {
+  animation: pulsar 2s infinite; /* Duração de 2 segundos, repetição infinita */
+  transition: transform 0.3s ease-in-out; /* Transição suave */
+}
+
+/* 🔹 Efeito ao passar o mouse */
+.botaozap:hover {
+  animation: none; /* Para a animação ao passar o mouse */
+  transform: scale(1.2); /* Aumenta o tamanho em 10% */
+}
+
