@@ -31,12 +31,16 @@ header {
   transition: height 0.3s;
   margin-left: 50px;
 }
-nav ul {
+
+/* estilizacao do menu */
+
+
+.menu ul {
   display: flex;
   list-style: none;
   padding: 20px;
 }
-nav li a {
+.menu li a {
   padding: 20px;
   background-color: #181e50;
   color: white;
@@ -75,7 +79,7 @@ nav li a {
 
 /* 🔹 Melhorando o Menu Mobile */
 @media (max-width: 768px) {
-  nav {
+  .menu {
     position: fixed;
     top: 0;
     right: -100%;
@@ -91,7 +95,9 @@ nav li a {
     transition: right 0.4s ease-in-out;
   }
 
-  nav ul {
+  .menu ul {
+    display: flex;
+    flex-direction: column;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -99,7 +105,7 @@ nav li a {
     text-align: center;
   }
 
-  nav ul li {
+  .menu ul li {
     margin: 15px 0;
   }
 
@@ -121,6 +127,7 @@ nav li a {
   /* Exibir botão do menu */
   .menu-toggle {
     display: block;
+    margin-right: 20px;
   }
 
   /* Classe para exibir o menu deslizando */
