@@ -17,32 +17,42 @@ document.addEventListener("DOMContentLoaded", function () {
         menu.classList.toggle("menu-open");
     });
 
+    // 🔹 Fechar o menu ao clicar em um link
+    const menuLinks = document.querySelectorAll(".menu ul li a");
+    menuLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+            menu.classList.remove("menu-open");
+        });
+    });
+
     // 🔹 Slider automático com efeito de transição suave
     let slideIndex = 0;
     const slides = document.querySelectorAll(".slide");
     let sliderInterval;
 
     function nextSlide() {
-        slides.forEach((slide, index) => {
-            slide.style.opacity = index === slideIndex ? "1" : "0";
+        slides.forEach((slide) => {
+            slide.style.opacity = "0";
         });
-
+        slides[slideIndex].style.opacity = "1";
         slideIndex = (slideIndex + 1) % slides.length;
     }
 
     function startSlider() {
-        sliderInterval = setInterval(nextSlide, 5000); // Muda a imagem a cada 5 segundos
+        if (!sliderInterval) {
+            sliderInterval = setInterval(nextSlide, 5000);
+        }
     }
 
     function stopSlider() {
         clearInterval(sliderInterval);
+        sliderInterval = null;
     }
 
-    // 🔹 Verifica se o usuário está na seção "Sobre"
     function checkVisibility() {
         const section = document.querySelector("#sobre");
         const rect = section.getBoundingClientRect();
-        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+        if (rect.top < window.innerHeight && rect.bottom >= 0) {
             startSlider();
         } else {
             stopSlider();
@@ -52,6 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", checkVisibility);
     window.addEventListener("resize", checkVisibility);
 
-    // 🔹 Iniciar apenas quando visível
     checkVisibility();
+    nextSlide();
 });
