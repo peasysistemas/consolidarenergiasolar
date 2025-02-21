@@ -64,4 +64,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     checkVisibility();
     nextSlide();
+
+    // 🔹 Efeito de deslize ao rolar até as seções
+    const sections = document.querySelectorAll(".sobre-empresa");
+
+    sections.forEach((section) => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    section.classList.add("visible");
+                    observer.unobserve(section); // Para de observar após a animação
+                }
+            });
+        }, { threshold: 0.5 }); // Dispara quando 50% da seção estiver visível
+
+        observer.observe(section);
+    });
 });

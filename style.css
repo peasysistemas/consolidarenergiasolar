@@ -72,87 +72,91 @@ header {
   height: 50px;
 }
 
+.header-small {
+  height: 10px;
+}
 
 /* 🔹 Melhorando o Menu Mobile */
 @media (max-width: 768px) {
   #header {
-  background-color: #f4f5ff00;
-}
+    background-color: #f4f5ff00;
+  }
+
   .logo {
-      margin: auto;
+    margin: auto;
   }
 
   .logo img {
-      margin: auto;
-      height: 50px;
+    margin: auto;
+    height: 50px;
   }
 
   .menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 80%;
-      max-width: 300px;
-      height: 100vh;
-      background: rgba(24, 30, 80, 0.95);
-      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: right 0.4s ease-in-out;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(24, 30, 80, 0.95);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.4s ease-in-out;
   }
 
   .menu.menu-open {
-      right: 0;
+    right: 0;
   }
 
   .menu ul {
-      display: flex;
-      flex-direction: column;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      text-align: center;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
   }
 
   .menu ul li {
-      margin: 15px 0;
+    margin: 15px 0;
   }
 
   .menu ul li a {
-      color: white;
-      font-size: 20px;
-      text-decoration: none;
-      display: block;
-      padding: 12px 0;
-      width: 100%;
-      transition: background 0.3s ease-in-out;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    display: block;
+    padding: 12px 0;
+    width: 100%;
+    transition: background 0.3s ease-in-out;
   }
 
   .menu ul li a:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
   }
 
   /* Exibir botão do menu */
   .menu-toggle {
-      display: block;
-      margin-right: 20px;
+    display: block;
+    margin-right: 20px;
   }
 }
 
 /* 🔹 Estilização do slider */
 .slider {
-  padding-top: 60px;
   width: 100%;
-  height: 700px;
+  min-height: 700px;
   overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 30px;
 }
 
 .slides {
@@ -269,19 +273,21 @@ form button:hover {
 /* 🔹 Responsividade */
 @media (max-width: 768px) {
   .content {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .texto, .formulario {
-      width: 100%;
-      margin-bottom: 10px;
+    width: 100%;
+    margin-bottom: 10px;
   }
 }
+
 header {
   padding: 20px;
 }
+
 .content {
   top: 60px;
 }
@@ -294,4 +300,138 @@ section {
 /* 🔹 Rolagem suave */
 html {
   scroll-behavior: smooth;
+}
+
+/* 🔹 Estilo geral das seções */
+.sobre-empresa {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9; /* Cor de fundo de fallback */
+}
+
+.sobre-empresa .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.sobre-empresa .texto {
+  width: 50%;
+  opacity: 0;
+  transform: translateX(-100%); /* Começa fora da tela, à esquerda */
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.sobre-empresa .imagem {
+  width: 45%;
+  opacity: 0;
+  transform: translateX(100%); /* Começa fora da tela, à direita */
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.sobre-empresa .imagem img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sobre-empresa.visible .texto,
+.sobre-empresa.visible .imagem {
+  opacity: 1;
+  transform: translateX(0); /* Move para a posição original */
+}
+
+.sobre-empresa h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #181e50;
+}
+
+.sobre-empresa p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* 🔹 Estilo para mobile (telas menores que 768px) */
+@media (max-width: 768px) {
+  .logo {
+    margin-left: 20px; /* Ajuste o valor conforme necessário */
+    margin-right: auto; /* Empurra a logo para a esquerda */
+}
+
+.menu-toggle {
+    margin-left: auto; /* Mantém o botão do menu no canto direito */
+    margin-right: 20px; /* Ajuste o valor conforme necessário */
+    position: absolute;
+}
+  .sobre-empresa {
+    height: auto; /* Altura automática para se ajustar ao conteúdo */
+    flex-direction: column; /* Empilha os elementos verticalmente */
+  }
+
+  .sobre-empresa .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sobre-empresa .texto,
+  .sobre-empresa .imagem {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .sobre-empresa .imagem {
+    display: none; /* Esconde a imagem no mobile */
+  }
+
+  .sobre-empresa .texto {
+    opacity: 1; /* Mantém o texto visível */
+    transform: translateX(0); /* Remove o deslize no mobile */
+  }
+
+  /* Transforma a imagem em fundo da seção no mobile */
+  .sobre-empresa {
+    background-size: cover;
+    background-position: center;
+  }
+
+  #sobre-empresa {
+    background-image: url('./images/img1.jpeg'); /* Imagem de fundo para a primeira seção */
+  }
+
+  #nova-secao {
+    background-image: url('./images/img2.jpeg'); /* Imagem de fundo para a segunda seção */
+  }
+
+  .sobre-empresa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(24, 30, 80, 0.7); /* Overlay escuro para melhorar a legibilidade */
+    z-index: 1;
+  }
+
+  .sobre-empresa .container {
+    position: relative;
+    z-index: 2;
+    color: white; /* Texto branco para contrastar com o fundo */
+  }
+
+  .sobre-empresa h2,
+  .sobre-empresa p {
+    color: white; /* Garante que o texto seja legível sobre o fundo */
+  }
 }
