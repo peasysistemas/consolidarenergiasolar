@@ -14,8 +14,8 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0px 10px;
-  background-color: #e4e6fa;
-  color: white;
+  background-color: #e4e6fa00;
+  color: rgba(255, 255, 255, 0);
   position: fixed;
   top: 0;
   width: 100%;
@@ -26,7 +26,7 @@ header {
 
 /* 🔹 Estilização da logo */
 .logo img {
-  height: 100px;
+  height: 150px;
   width: auto;
   transition: height 0.3s;
   margin-left: 50px;
@@ -56,7 +56,7 @@ nav ul li a:hover {
 
 /* 🔹 Estilização do menu */
 .menu ul {
-  display: flex;
+  display:none;
   list-style: none;
   padding: 20px;
 }
@@ -316,7 +316,7 @@ header {
 
 /* 🔹 Ajuste para não cobrir o conteúdo */
 section {
-  min-height: 100vh;
+  min-height: 100px;
 }
 
 /* 🔹 Rolagem suave */
@@ -489,5 +489,67 @@ html {
 .botaozap:hover {
   animation: none; /* Para a animação ao passar o mouse */
   transform: scale(1.2); /* Aumenta o tamanho em 10% */
+}
+
+/* dados da empresa */
+#ondeestamos {
+  display: flex;
+  flex-direction: column;align-items: center;
+}
+#ondeestamos h1 {
+  margin: 20px;
+}
+
+/* 🔹 Estilo da seção de estatísticas */
+.stats-section {
+  background-color: #f9f9f9; /* Cor de fundo */
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #181e50;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.stat-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.stat-value {
+  font-size: 36px;
+  color: #181e50; /* Cor do tema */
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 18px;
+  color: #666;
+}
+
+/* 🔹 Responsividade */
+@media (max-width: 768px) {
+  .stats-container {
+      flex-direction: column;
+  }
+
+  .stat-item {
+      margin: 10px 0;
+  }
 }
 
