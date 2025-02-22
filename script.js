@@ -81,3 +81,33 @@ document.addEventListener("DOMContentLoaded", function () {
         observer.observe(section);
     });
 });
+
+// Captura o formulário pelo ID "contactForm" e adiciona um evento de "submit"
+document.getElementById('contactForm').addEventListener('submit', function (event) {
+    // Impede o comportamento padrão do formulário (não envia o formulário da forma tradicional)
+    event.preventDefault();
+
+    // Captura o valor do campo de nome pelo ID "nome"
+    const nome = document.getElementById('nome').value;
+
+    // Captura o valor do campo de email pelo ID "email"
+    const email = document.getElementById('email').value;
+
+    // Captura o valor do campo de telefone pelo ID "telefone"
+    const telefone = document.getElementById('telefone').value;
+
+    // Cria uma mensagem personalizada com os valores capturados
+    const mensagem = `Olá, meu nome é ${nome}. Meu email é ${email} e meu telefone é ${telefone}. Gostaria de mais informações.`;
+
+    // Codifica a mensagem para ser usada em uma URL (substitui espaços e caracteres especiais)
+    const mensagemCodificada = encodeURIComponent(mensagem);
+
+    // Define o número de WhatsApp no formato internacional (sem espaços ou hífens)
+    const numeroWhatsApp = '5584998227798';
+
+    // Cria o link do WhatsApp com o número e a mensagem codificada
+    const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
+
+    // Abre o link do WhatsApp em uma nova aba ou janela do navegador
+    window.open(linkWhatsApp, '_blank');
+});
