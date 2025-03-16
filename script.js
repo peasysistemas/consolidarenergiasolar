@@ -111,3 +111,64 @@ document.getElementById('contactForm').addEventListener('submit', function (even
     // Abre o link do WhatsApp em uma nova aba ou janela do navegador
     window.open(linkWhatsApp, '_blank');
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const videoFrame = document.getElementById("video-frame");
+    const videoDescription = document.getElementById("video-description");
+
+    const videos = [
+        { id: "RNd0YQilsHI", description: "Descrição do vídeo 1" },
+        { id: "RP4bME3sVFQ", description: "Descrição do vídeo 2" },
+        { id: "0hjEsDNzzpY", description: "Descrição do vídeo 3" }
+    ];
+
+    let currentIndex = 0;
+
+    function loadVideo(index) {
+        const videoId = videos[index].id;
+        videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&enablejsapi=1`;
+        videoDescription.innerText = videos[index].description;
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.ENDED) {
+            nextVideo();
+        }
+    }
+
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('video-frame', {
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function prevVideo() {
+        currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+        loadVideo(currentIndex);
+    }
+
+    function nextVideo() {
+        currentIndex = (currentIndex + 1) % videos.length;
+        loadVideo(currentIndex);
+    }
+
+    window.prevVideo = prevVideo;
+    window.nextVideo = nextVideo;
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                player.playVideo();
+            } else {
+                player.pauseVideo();
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(document.getElementById('video-container'));
+
+    loadVideo(currentIndex);
+});

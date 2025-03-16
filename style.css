@@ -649,3 +649,15 @@ html {
 .footercopy {
   text-align: center;
 }
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.controls {
+  margin-top: 10px;
+}
+.description {
+  margin-top: 5px;
+}

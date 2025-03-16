@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consolida Energia Solar</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.youtube.com/iframe_api"></script> <!-- API do YouTube -->
     <script defer src="script.js"></script>
     <link rel="shortcut icon" href="./images/favicon_io/faviconbranco.png" type="image/x-icon">
 </head>
@@ -100,6 +101,17 @@
                 <h2 class="stat-value">90%</h2>
                 <p class="stat-label">CLIENTES SATISFEITOS</p>
             </div>
+        </div>
+    </section>
+
+    <section class="slider-container">
+        <div id="video-container">
+            <iframe id="video-frame" width="560" height="315" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <p id="video-description" class="description">Descrição do vídeo 1</p>
+        <div class="controls">
+            <button onclick="prevVideo()">Anterior</button>
+            <button onclick="nextVideo()">Próximo</button>
         </div>
     </section>
 
