@@ -716,9 +716,19 @@ html {
   content: "⏩";
 }
 
-@media (max-width: 400px) {
+@media (max-width: 768px) {
+  .slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #video-container {
+      max-width: 90%; /* Ocupa quase toda a tela */
+  }
+
   #video-frame {
-      height: 200px;
+    min-height: 400px;
+      
   }
 
   .controls button {
