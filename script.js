@@ -112,63 +112,101 @@ document.getElementById('contactForm').addEventListener('submit', function (even
     window.open(linkWhatsApp, '_blank');
 });
 
+// Aguarda o carregamento completo da página antes de executar o script
 document.addEventListener("DOMContentLoaded", function () {
+    // Seleciona o iframe onde os vídeos do YouTube serão carregados
     const videoFrame = document.getElementById("video-frame");
+    // Seleciona o parágrafo onde a descrição do vídeo será exibida
     const videoDescription = document.getElementById("video-description");
 
+    // Lista de vídeos com seus respectivos IDs e descrições
     const videos = [
-        { id: "RNd0YQilsHI", description: "Descrição do vídeo 1" },
-        { id: "RP4bME3sVFQ", description: "Descrição do vídeo 2" },
-        { id: "0hjEsDNzzpY", description: "Descrição do vídeo 3" }
+        { id: "RNd0YQilsHI", description: "O que muda quando instalamos Energia Solar?" },
+        { id: "RP4bME3sVFQ", description: "E as garantias?" },
+        { id: "0hjEsDNzzpY", description: "Conforto e Economia é com a Consolida Energia Solar!" },
+        { id: "GnPJhLs0gqM", description: "E a taxa mínima da concessionária?" }
     ];
 
-    let currentIndex = 0;
+    let currentIndex = 0; // Índice do vídeo atual na lista
+    let player; // Variável global para armazenar o player do YouTube
 
+    /**
+     * Carrega um vídeo do YouTube com base no índice da lista `videos`
+     * @param {number} index - Índice do vídeo a ser carregado
+     */
     function loadVideo(index) {
-        const videoId = videos[index].id;
+        const videoId = videos[index].id; // Obtém o ID do vídeo
+        // Define a URL do vídeo no iframe com autoplay ativado e sem controles do YouTube
         videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&enablejsapi=1`;
+        // Atualiza a descrição do vídeo na interface
         videoDescription.innerText = videos[index].description;
     }
 
+    /**
+     * Detecta mudanças no estado do vídeo (por exemplo, se terminou de tocar)
+     * @param {object} event - Evento do player do YouTube
+     */
     function onPlayerStateChange(event) {
+        // Se o vídeo terminou, passa automaticamente para o próximo
         if (event.data === YT.PlayerState.ENDED) {
             nextVideo();
         }
     }
 
+    /**
+     * Função chamada automaticamente quando a API do YouTube é carregada
+     * Cria um novo player do YouTube e associa a função `onPlayerStateChange`
+     */
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('video-frame', {
             events: {
-                'onStateChange': onPlayerStateChange
+                'onStateChange': onPlayerStateChange // Vincula a função de mudança de estado do vídeo
             }
         });
     }
 
+    /**
+     * Retrocede para o vídeo anterior na lista
+     */
     function prevVideo() {
+        // Atualiza o índice para o vídeo anterior, garantindo que a lista seja circular
         currentIndex = (currentIndex - 1 + videos.length) % videos.length;
-        loadVideo(currentIndex);
+        loadVideo(currentIndex); // Carrega o novo vídeo
     }
 
+    /**
+     * Avança para o próximo vídeo na lista
+     */
     function nextVideo() {
+        // Atualiza o índice para o próximo vídeo, garantindo que a lista seja circular
         currentIndex = (currentIndex + 1) % videos.length;
-        loadVideo(currentIndex);
+        loadVideo(currentIndex); // Carrega o novo vídeo
     }
 
+    // Torna as funções acessíveis globalmente para serem usadas no HTML
     window.prevVideo = prevVideo;
     window.nextVideo = nextVideo;
     window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 
+    /**
+     * Usa a API de Intersection Observer para detectar quando o vídeo está visível na tela
+     * Se o vídeo estiver visível, ele começa a tocar automaticamente
+     * Se sair da tela, ele pausa automaticamente
+     */
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                player.playVideo();
-            } else {
-                player.pauseVideo();
+            // Verifica se o player já foi inicializado antes de tentar controlá-lo
+            if (player && entry.isIntersecting) {
+                player.playVideo(); // Toca o vídeo automaticamente
+            } else if (player) {
+                player.pauseVideo(); // Pausa o vídeo se não estiver visível
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.5 }); // A condição é que pelo menos 50% do vídeo esteja visível
 
+    // Inicia a observação do container do vídeo
     observer.observe(document.getElementById('video-container'));
 
+    // Carrega o primeiro vídeo ao iniciar a página
     loadVideo(currentIndex);
 });
