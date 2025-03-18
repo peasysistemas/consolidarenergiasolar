@@ -124,7 +124,11 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "RNd0YQilsHI", description: "O que muda quando instalamos Energia Solar?" },
         { id: "RP4bME3sVFQ", description: "E as garantias?" },
         { id: "0hjEsDNzzpY", description: "Conforto e Economia é com a Consolida Energia Solar!" },
-        { id: "GnPJhLs0gqM", description: "E a taxa mínima da concessionária?" }
+        { id: "GnPJhLs0gqM", description: "E a taxa mínima da concessionária?" },
+        { id: "4og6ijAdOsE", description: "🔎 Não sabe quanto precisa de energia? 🤔⚡\n\nFique tranquilo! A Consolida Energia Solar faz um diagnóstico gratuito do seu consumo e dimensiona um sistema fotovoltaico sob medida para você!" },
+        { id: "4JOUEg7CyqM", description: "🔹 O que é uma Unidade Beneficiária na Energia Solar? ☀️⚡" },
+        { id: "2sZWrR3jXZY", description: "💰 Financiamento de Energia Solar – Invista sem pesar no bolso! ☀️⚡" },
+
     ];
 
     let currentIndex = 0; // Índice do vídeo atual na lista

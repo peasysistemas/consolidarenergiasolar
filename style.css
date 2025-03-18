@@ -633,7 +633,7 @@ html {
 .titleiframe {
   font-weight: bold;
   margin: 20px;
-  font-size: 20px;
+  font-size: 25px;
 }
 .redesocialsection {
   display: flex;
@@ -667,6 +667,10 @@ html {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
+}
+#video-container iframe {
+ height: 400px;
+
 }
 
 .description {
