@@ -1,31 +1,39 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 🔹 Alternar a classe para reduzir o cabeçalho ao rolar
-    window.addEventListener("scroll", function () {
-        let header = document.getElementById("header");
-        if (window.scrollY > 50) {
-            header.classList.add("header-small");
-        } else {
-            header.classList.remove("header-small");
-        }
-    });
+   // 🔹 Alternar a classe para reduzir o cabeçalho ao rolar (com suavidade)
+window.addEventListener("scroll", function () {
+    let header = document.getElementById("header");
+    const logo = document.querySelector('.logo img');
+    
+    if (window.scrollY > 50) {
+        header.classList.add("header-small");
+    } else {
+        header.classList.remove("header-small");
+    }
+    
+    // Efeito de escala progressiva (opcional)
+    const scale = Math.max(0.5, 1 - window.scrollY / 300); // Ajuste 300 para mudar a sensibilidade
+    logo.style.transform = `scale(${scale})`;
+});
 
-    // 🔹 Alternar visibilidade do menu no mobile com animação
+    // 🔹 Menu Mobile
     const menuToggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("menu");
 
     menuToggle.addEventListener("click", function () {
         menu.classList.toggle("menu-open");
+        menuToggle.setAttribute('aria-expanded', menu.classList.contains("menu-open"));
     });
 
-    // 🔹 Fechar o menu ao clicar em um link
+    // 🔹 Fechar menu ao clicar nos links
     const menuLinks = document.querySelectorAll(".menu ul li a");
     menuLinks.forEach((link) => {
         link.addEventListener("click", function () {
             menu.classList.remove("menu-open");
+            menuToggle.setAttribute('aria-expanded', 'false');
         });
     });
 
-    // 🔹 Slider automático com efeito de transição suave
+    // 🔹 Slider de Imagens
     let slideIndex = 0;
     const slides = document.querySelectorAll(".slide");
     let sliderInterval;
@@ -51,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function checkVisibility() {
         const section = document.querySelector("#sobre");
+        if (!section) return;
+        
         const rect = section.getBoundingClientRect();
         if (rect.top < window.innerHeight && rect.bottom >= 0) {
             startSlider();
@@ -59,158 +69,380 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    window.addEventListener("scroll", checkVisibility);
-    window.addEventListener("resize", checkVisibility);
+    // Debounce para scroll/resize
+    let isScrolling;
+    window.addEventListener("scroll", function() {
+        window.clearTimeout(isScrolling);
+        isScrolling = setTimeout(checkVisibility, 100);
+    }, false);
+
+    window.addEventListener("resize", function() {
+        window.clearTimeout(isScrolling);
+        isScrolling = setTimeout(checkVisibility, 100);
+    }, false);
 
     checkVisibility();
     nextSlide();
 
-    // 🔹 Efeito de deslize ao rolar até as seções
+    // 🔹 Animações de Seção
     const sections = document.querySelectorAll(".sobre-empresa");
-
     sections.forEach((section) => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     section.classList.add("visible");
-                    observer.unobserve(section); // Para de observar após a animação
+                    observer.unobserve(section);
                 }
             });
-        }, { threshold: 0.5 }); // Dispara quando 50% da seção estiver visível
-
+        }, { threshold: 0.1 });
         observer.observe(section);
     });
-});
 
-// Captura o formulário pelo ID "contactForm" e adiciona um evento de "submit"
-document.getElementById('contactForm').addEventListener('submit', function (event) {
-    // Impede o comportamento padrão do formulário (não envia o formulário da forma tradicional)
-    event.preventDefault();
+    // 🔹 Formulário de Contato
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        
+        const nome = document.getElementById('nome').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const telefone = document.getElementById('telefone').value.trim();
 
-    // Captura o valor do campo de nome pelo ID "nome"
-    const nome = document.getElementById('nome').value;
+        if (!nome || !email || !telefone) {
+            alert("Por favor, preencha todos os campos!");
+            return;
+        }
 
-    // Captura o valor do campo de email pelo ID "email"
-    const email = document.getElementById('email').value;
+        const mensagem = `Olá, meu nome é ${nome}. Meu email é ${email} e meu telefone é ${telefone}. Gostaria de mais informações.`;
+        const mensagemCodificada = encodeURIComponent(mensagem);
+        const linkWhatsApp = `https://wa.me/5584998227798?text=${mensagemCodificada}`;
+        
+        window.open(linkWhatsApp, '_blank');
+    });
 
-    // Captura o valor do campo de telefone pelo ID "telefone"
-    const telefone = document.getElementById('telefone').value;
+    // 🔹 Sistema de Players de Vídeo (para múltiplos players)
+    const videoGroups = {
+        1: {
+            videos: [
+                { id: "2sZWrR3jXZY", description: "💰 Financiamento de Energia Solar – Invista sem pesar no bolso! ☀️⚡" },
+                { id: "RNd0YQilsHI", description: "O que muda quando instalamos Energia Solar?" },
+                { id: "RP4bME3sVFQ", description: "E as garantias?" },
+                { id: "0hjEsDNzzpY", description: "Conforto e Economia é com a Consolida Energia Solar!" },
+                { id: "GnPJhLs0gqM", description: "E a taxa mínima da concessionária?" },
+                { id: "4og6ijAdOsE", description: "🔎 Não sabe quanto precisa de energia? 🤔⚡\n\nFique tranquilo! A Consolida Energia Solar faz um diagnóstico gratuito do seu consumo e dimensiona um sistema fotovoltaico sob medida para você!" },
+                { id: "4JOUEg7CyqM", description: "🔹 O que é uma Unidade Beneficiária na Energia Solar? ☀️⚡" },
+            ],
+            currentIndex: 0,
+            player: null
+        },
+        2: {
+            videos: [
+                { id: "2_brZemIXbM", description: "🌟 Depoimento de Nosso Cliente, Darlisson – Economia e Satisfação! 🌟 (parte 1)" },
+                { id: "RP4bME3sVFQ", description: "🌟 Depoimento de Nosso Cliente, Darlisson – Economia e Satisfação! 🌟 (parte 2)" },
+            ],
+            currentIndex: 0,
+            player: null
+        }
+    };
 
-    // Cria uma mensagem personalizada com os valores capturados
-    const mensagem = `Olá, meu nome é ${nome}. Meu email é ${email} e meu telefone é ${telefone}. Gostaria de mais informações.`;
+    // Inicializa todos os players
+    document.querySelectorAll('.slider-container').forEach(container => {
+        const groupId = container.getAttribute('data-video-group');
+        const group = videoGroups[groupId];
+        const videoFrame = container.querySelector('.video-frame');
+        const description = container.querySelector('.video-description');
+        const prevBtn = container.querySelector('.btn.prev');
+        const nextBtn = container.querySelector('.btn.next');
+        
+        function loadVideo(index) {
+            group.currentIndex = index;
+            const videoId = group.videos[index].id;
+            videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=0&controls=0&enablejsapi=1`;
+            description.textContent = group.videos[index].description;
+        }
 
-    // Codifica a mensagem para ser usada em uma URL (substitui espaços e caracteres especiais)
-    const mensagemCodificada = encodeURIComponent(mensagem);
+        function prevVideo() {
+            let newIndex = group.currentIndex - 1;
+            if (newIndex < 0) newIndex = group.videos.length - 1;
+            loadVideo(newIndex);
+        }
 
-    // Define o número de WhatsApp no formato internacional (sem espaços ou hífens)
-    const numeroWhatsApp = '5584998227798';
+        function nextVideo() {
+            let newIndex = group.currentIndex + 1;
+            if (newIndex >= group.videos.length) newIndex = 0;
+            loadVideo(newIndex);
+        }
 
-    // Cria o link do WhatsApp com o número e a mensagem codificada
-    const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
+        prevBtn.addEventListener('click', prevVideo);
+        nextBtn.addEventListener('click', nextVideo);
 
-    // Abre o link do WhatsApp em uma nova aba ou janela do navegador
-    window.open(linkWhatsApp, '_blank');
-});
+        // Inicializa o primeiro vídeo
+        loadVideo(0);
 
-// Aguarda o carregamento completo da página antes de executar o script
-document.addEventListener("DOMContentLoaded", function () {
-    // Seleciona o iframe onde os vídeos do YouTube serão carregados
-    const videoFrame = document.getElementById("video-frame");
-    // Seleciona o parágrafo onde a descrição do vídeo será exibida
-    const videoDescription = document.getElementById("video-description");
+        // Configura o player quando a API estiver pronta
+        window.onYouTubeIframeAPIReady = function() {
+            group.player = new YT.Player(videoFrame, {
+                events: {
+                    'onStateChange': function(event) {
+                        if (event.data === YT.PlayerState.ENDED) {
+                            nextVideo();
+                        }
+                    }
+                }
+            });
+        };
 
-    // Lista de vídeos com seus respectivos IDs e descrições
-    const videos = [
-        { id: "RNd0YQilsHI", description: "O que muda quando instalamos Energia Solar?" },
-        { id: "RP4bME3sVFQ", description: "E as garantias?" },
-        { id: "0hjEsDNzzpY", description: "Conforto e Economia é com a Consolida Energia Solar!" },
-        { id: "GnPJhLs0gqM", description: "E a taxa mínima da concessionária?" },
-        { id: "4og6ijAdOsE", description: "🔎 Não sabe quanto precisa de energia? 🤔⚡\n\nFique tranquilo! A Consolida Energia Solar faz um diagnóstico gratuito do seu consumo e dimensiona um sistema fotovoltaico sob medida para você!" },
-        { id: "4JOUEg7CyqM", description: "🔹 O que é uma Unidade Beneficiária na Energia Solar? ☀️⚡" },
-        { id: "2sZWrR3jXZY", description: "💰 Financiamento de Energia Solar – Invista sem pesar no bolso! ☀️⚡" },
+        // Controle de visibilidade
+        new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (group.player) {
+                    if (entry.isIntersecting) {
+                        group.player.playVideo();
+                    } else {
+                        group.player.pauseVideo();
+                    }
+                }
+            });
+        }, { threshold: 0.5 }).observe(container);
+    });
 
-    ];
-
-    let currentIndex = 0; // Índice do vídeo atual na lista
-    let player; // Variável global para armazenar o player do YouTube
-
-    /**
-     * Carrega um vídeo do YouTube com base no índice da lista `videos`
-     * @param {number} index - Índice do vídeo a ser carregado
-     */
-    function loadVideo(index) {
-        const videoId = videos[index].id; // Obtém o ID do vídeo
-        // Define a URL do vídeo no iframe com autoplay ativado e sem controles do YouTube
-        videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&enablejsapi=1`;
-        // Atualiza a descrição do vídeo na interface
-        videoDescription.innerText = videos[index].description;
+    // Carrega a API do YouTube (apenas uma vez)
+    if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     }
 
-    /**
-     * Detecta mudanças no estado do vídeo (por exemplo, se terminou de tocar)
-     * @param {object} event - Evento do player do YouTube
-     */
-    function onPlayerStateChange(event) {
-        // Se o vídeo terminou, passa automaticamente para o próximo
-        if (event.data === YT.PlayerState.ENDED) {
-            nextVideo();
+    // 🔹 Responsividade
+    function handleResponsiveChanges() {
+        const logo = document.querySelector('.logo img');
+        if (window.innerWidth < 768) {
+            logo.style.height = '60px';
+        } else {
+            logo.style.height = '120px';
         }
     }
 
-    /**
-     * Função chamada automaticamente quando a API do YouTube é carregada
-     * Cria um novo player do YouTube e associa a função `onPlayerStateChange`
-     */
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('video-frame', {
-            events: {
-                'onStateChange': onPlayerStateChange // Vincula a função de mudança de estado do vídeo
-            }
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            handleResponsiveChanges();
+            checkVisibility();
+        }, 250);
+    });
+
+    handleResponsiveChanges();
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Configuração dos players de vídeo (mantenha todo o código existente)
+    // ...
+    
+    // Controle do botão Veja Mais
+    const vejaMaisBtn = document.getElementById('vejaMaisBtn');
+    const conteudoExtra = document.getElementById('conteudoExtra');
+    
+    if(vejaMaisBtn && conteudoExtra) {
+        vejaMaisBtn.addEventListener('click', function() {
+            // Mostra apenas a segunda seção de vídeos
+            conteudoExtra.style.display = 'block';
+            conteudoExtra.style.opacity = '0';
+            
+            // Animação de aparecimento
+            setTimeout(() => {
+                conteudoExtra.style.transition = 'opacity 0.5s ease';
+                conteudoExtra.style.opacity = '1';
+            }, 10);
+            
+            // Esconde o botão
+            this.style.transition = 'opacity 0.3s ease';
+            this.style.opacity = '0';
+            
+            // Remove o botão após a animação
+            setTimeout(() => {
+                this.style.display = 'none';
+                
+                // Rola a página até a seção aberta
+                conteudoExtra.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Inicializa o player de vídeo da segunda seção
+                const secondVideoGroup = videoGroups[2];
+                if(secondVideoGroup && secondVideoGroup.videos.length > 0) {
+                    const secondVideoFrame = conteudoExtra.querySelector('.video-frame');
+                    secondVideoFrame.src = `https://www.youtube.com/embed/${secondVideoGroup.videos[0].id}?autoplay=0&controls=0&enablejsapi=1`;
+                }
+            }, 300);
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const carrossel = document.querySelector('.carrossel-fila');
+    if (!carrossel) return;
+
+    const track = carrossel.querySelector('.carrossel-track');
+    const slides = Array.from(carrossel.querySelectorAll('.carrossel-slide'));
+    const dotsContainer = carrossel.querySelector('.carrossel-dots');
+    
+    // Configurações
+    const config = {
+        slideInterval: 5000,
+        scrollSpeed: 600,
+        slidesPerView: 1 // Será calculado
+    };
+    
+    let currentIndex = 0;
+    let slideWidth = 0;
+    let isAnimating = false;
+    let slideTimeout;
+    let resizeTimeout;
+
+    // Inicialização
+    function initCarrossel() {
+        calculateSlidesPerView();
+        createDots();
+        setupEventListeners();
+        startAutoScroll();
+        updateCarrossel();
+    }
+
+    // Calcula quantos slides cabem na tela
+    function calculateSlidesPerView() {
+        if (slides.length === 0) return;
+        
+        const slide = slides[0];
+        const containerWidth = carrossel.offsetWidth;
+        
+        slideWidth = slide.offsetWidth + 20; // Inclui o gap
+        
+        config.slidesPerView = Math.floor(containerWidth / slideWidth);
+        config.slidesPerView = Math.max(1, config.slidesPerView);
+    }
+
+    // Atualiza a posição do carrossel
+    function updateCarrossel() {
+        const maxIndex = Math.max(0, slides.length - config.slidesPerView);
+        currentIndex = Math.min(currentIndex, maxIndex);
+        
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        updateDots();
+    }
+
+    // Cria os dots de navegação
+    function createDots() {
+        if (!dotsContainer) return;
+        
+        dotsContainer.innerHTML = '';
+        const dotCount = Math.ceil(slides.length / config.slidesPerView);
+        
+        for (let i = 0; i < dotCount; i++) {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    // Atualiza os dots ativos
+    function updateDots() {
+        if (!dotsContainer) return;
+        
+        const dots = dotsContainer.querySelectorAll('.dot');
+        const activeDotIndex = Math.floor(currentIndex / config.slidesPerView);
+        
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === activeDotIndex);
         });
     }
 
-    /**
-     * Retrocede para o vídeo anterior na lista
-     */
-    function prevVideo() {
-        // Atualiza o índice para o vídeo anterior, garantindo que a lista seja circular
-        currentIndex = (currentIndex - 1 + videos.length) % videos.length;
-        loadVideo(currentIndex); // Carrega o novo vídeo
+    // Navegação para o próximo grupo de slides
+    function nextSlide() {
+        const maxIndex = Math.max(0, slides.length - config.slidesPerView);
+        
+        if (currentIndex < maxIndex) {
+            currentIndex += config.slidesPerView;
+        } else {
+            currentIndex = 0;
+        }
+        
+        animateCarrossel();
     }
 
-    /**
-     * Avança para o próximo vídeo na lista
-     */
-    function nextVideo() {
-        // Atualiza o índice para o próximo vídeo, garantindo que a lista seja circular
-        currentIndex = (currentIndex + 1) % videos.length;
-        loadVideo(currentIndex); // Carrega o novo vídeo
+    // Vai para um slide específico
+    function goToSlide(index) {
+        currentIndex = index * config.slidesPerView;
+        animateCarrossel();
+        resetAutoScroll();
     }
 
-    // Torna as funções acessíveis globalmente para serem usadas no HTML
-    window.prevVideo = prevVideo;
-    window.nextVideo = nextVideo;
-    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+    // Animação do carrossel
+    function animateCarrossel() {
+        isAnimating = true;
+        track.style.transition = `transform ${config.scrollSpeed}ms ease`;
+        updateCarrossel();
+        
+        setTimeout(() => {
+            isAnimating = false;
+        }, config.scrollSpeed);
+    }
 
-    /**
-     * Usa a API de Intersection Observer para detectar quando o vídeo está visível na tela
-     * Se o vídeo estiver visível, ele começa a tocar automaticamente
-     * Se sair da tela, ele pausa automaticamente
-     */
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // Verifica se o player já foi inicializado antes de tentar controlá-lo
-            if (player && entry.isIntersecting) {
-                player.playVideo(); // Toca o vídeo automaticamente
-            } else if (player) {
-                player.pauseVideo(); // Pausa o vídeo se não estiver visível
-            }
+    // Controle do auto-scroll
+    function startAutoScroll() {
+        resetAutoScroll();
+    }
+
+    function resetAutoScroll() {
+        clearTimeout(slideTimeout);
+        slideTimeout = setTimeout(() => {
+            nextSlide();
+            resetAutoScroll();
+        }, config.slideInterval);
+    }
+
+    function pauseAutoScroll() {
+        clearTimeout(slideTimeout);
+    }
+
+    // Event listeners
+    function setupEventListeners() {
+        // Pausa no hover
+        carrossel.addEventListener('mouseenter', pauseAutoScroll);
+        carrossel.addEventListener('mouseleave', resetAutoScroll);
+
+        // Redimensionamento
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                calculateSlidesPerView();
+                createDots();
+                updateCarrossel();
+            }, 200);
         });
-    }, { threshold: 0.5 }); // A condição é que pelo menos 50% do vídeo esteja visível
 
-    // Inicia a observação do container do vídeo
-    observer.observe(document.getElementById('video-container'));
+        // Toque para dispositivos móveis
+        let touchStartX = 0;
+        let touchEndX = 0;
 
-    // Carrega o primeiro vídeo ao iniciar a página
-    loadVideo(currentIndex);
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            pauseAutoScroll();
+        }, {passive: true});
+
+        track.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            resetAutoScroll();
+        }, {passive: true});
+
+        function handleSwipe() {
+            const threshold = 50;
+            if (touchStartX - touchEndX > threshold) {
+                nextSlide();
+            }
+        }
+    }
+
+    // Inicializa o carrossel
+    initCarrossel();
 });

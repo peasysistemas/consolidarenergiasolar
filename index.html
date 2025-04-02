@@ -2,20 +2,20 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Consolida Energia Solar</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://www.youtube.com/iframe_api"></script> <!-- API do YouTube -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script defer src="script.js"></script>
     <link rel="shortcut icon" href="./images/favicon_io/faviconbranco.png" type="image/x-icon">
 </head>
 <body>
     <header id="header">
         <div class="logo">
-            <img src="./images/Logopurasemtel.png" alt="Logo Consolida">
+            <img src="./images/Logopurasemtel.png" alt="Logo Consolida Energia Solar">
         </div>
-        <button class="menu-toggle" id="menu-toggle">☰</button>
-        <nav class="menu" id="menu">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="menu" id="menu" aria-label="Menu principal">
             <ul>
                 <li><a href="#inicio">Início</a></li>
                 <li><a href="#sobre">Sobre</a></li>
@@ -28,9 +28,9 @@
 
     <section id="sobre" class="slider">
         <div class="slides">
-            <div class="slide" style="background-image: url('./images/placas-fotovoltaicas.jpg');"></div>
-            <div class="slide" style="background-image: url('./images/placasslide1.jpg');"></div>
-            <div class="slide" style="background-image: url('./images/insidencia-hcc.webp');"></div>
+            <div class="slide" style="background-image: url('./images/placas-fotovoltaicas.jpg');" aria-hidden="true"></div>
+            <div class="slide" style="background-image: url('./images/placasslide1.jpg');" aria-hidden="true"></div>
+            <div class="slide" style="background-image: url('./images/insidencia-hcc.webp');" aria-hidden="true"></div>
         </div>
 
         <div class="content">
@@ -44,9 +44,9 @@
             <div class="formulario">
                 <h3>Entre em Contato</h3>
                 <form id="contactForm">
-                    <input type="text" id="nome" placeholder="Seu Nome" required>
-                    <input type="email" id="email" placeholder="Seu Email" required>
-                    <input type="tel" id="telefone" placeholder="Seu Telefone" required>
+                    <input type="text" id="nome" placeholder="Seu Nome" required aria-label="Seu nome">
+                    <input type="email" id="email" placeholder="Seu Email" required aria-label="Seu email">
+                    <input type="tel" id="telefone" placeholder="Seu Telefone" required aria-label="Seu telefone">
                     <button type="submit">Enviar</button>
                 </form>
             </div>
@@ -56,14 +56,16 @@
     <section id="sobre-empresa" class="sobre-empresa">
         <div class="container">
             <div class="texto">
-                <h2>Mais Sobre Nossa Empresa</h2>
+                <h2>Energia solar é um bom negócio?</h2>
                 <p>
-                    Ao investir em energia solar, você reduz sua conta de luz em até 95%, protege-se contra aumentos na tarifa elétrica e valoriza seu imóvel. Além disso, há incentivos fiscais e linhas de financiamento acessíveis para facilitar sua transição para uma energia mais sustentável.
-                    Trabalhamos com equipamentos de alta qualidade, instalação segura e suporte especializado, sempre seguindo as normas técnicas e de segurança do setor. Nosso objetivo é oferecer um serviço ágil, confiável e com preço justo, priorizando sua satisfação.
+                É um bom negócio? Ao investir em energia solar, você reduz sua conta de energia em até 85%, protege-se contra aumentos na Tarifa de Energia Elétrica (TE) e valoriza seu imóvel. 
+                O melhor é que tudo isso cabe no seu bolso: há incentivos fiscais na aquisição dos equipamentos e linhas de financiamento acessíveis para facilitar sua transição para uma fonte sustentável.
+                Trabalhamos com equipamentos de alta qualidade, certificados nacional e internacionalmente. Contando com garantias longas (até 30 anos) que conferem maior segurança ao investimento.
+                Nosso time está preparado para te atender. Suporte especializado, atendendo suas demandas com agilidade e transparência em todos os processos. Instalação segura, sempre seguindo as normas técnicas e de segurança do setor.
                 </p>
             </div>
             <div class="imagem">
-                <img src="./images/img1.jpeg" alt="Energia Solar">
+                <img src="./images/img1.jpeg" alt="Equipamentos de energia solar" loading="lazy">
             </div>
         </div>
     </section>
@@ -71,63 +73,143 @@
     <section id="nova-secao" class="sobre-empresa">
         <div class="container">
             <div class="imagem">
-                <img src="./images/img7.jpeg" alt="Outra Imagem">
+                <img src="./images/img7.jpeg" alt="Missão da empresa" loading="lazy">
             </div>
             <div class="texto">
                 <h2>Nossa Missão</h2>
                 <p>
                     Nossa missão é levar energia solar de qualidade para todos, com soluções personalizadas que atendam às necessidades de cada cliente. Utilizamos tecnologia de ponta e práticas sustentáveis para garantir eficiência e durabilidade em nossos sistemas.
-                    Acreditamos que a energia solar é o futuro, e estamos comprometidos em fazer parte dessa transformação, contribuindo para um mundo mais verde e sustentável.
                 </p>
             </div>
         </div>
-    </section >
+    </section>
 
     <section class="stats-section quemsomos">
         <div class="stats-container">
             <div class="stat-item">
-                <h2 class="stat-value">+18MW</h2>
+                <h2 class="stat-value">+561,43 KW</h2>
                 <p class="stat-label">POTÊNCIA INSTALADA</p>
             </div>
             <div class="stat-item">
-                <h2 class="stat-value">+2000</h2>
+                <h2 class="stat-value">+100</h2>
                 <p class="stat-label">CLIENTES ATENDIDOS</p>
             </div>
             <div class="stat-item">
-                <h2 class="stat-value">+32000</h2>
+                <h2 class="stat-value">+1000</h2>
                 <p class="stat-label">PAINÉIS INSTALADOS</p>
             </div>
             <div class="stat-item">
-                <h2 class="stat-value">95%</h2>
-                <p class="stat-label">CLIENTES SATISFEITOS</p>
+                <h2 class="stat-value">+41.615</h2>
+                <p class="stat-label">ÁRVORES POUPADAS</p>
             </div>
         </div>
     </section>
 
-    <section class="slider-container">
+    <section class="slider-container" data-video-group="1">
         <div class="titleiframe">Confira algumas informações importantes</div>
-        <div id="video-container">
-            <iframe id="video-frame" max-height="400" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div class="video-container">
+            <iframe class="video-frame" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen 
+                title="Vídeos informativos sobre energia solar" loading="lazy"></iframe>
         </div>
-        <p id="video-description" class="description">Descrição do vídeo 1</p>
+        <p class="video-description">Descrição do vídeo</p>
         <div class="controls">
-            <button class="btn prev" onclick="prevVideo()">⏪ Anterior</button>
-            <button class="btn next" onclick="nextVideo()">Próximo ⏩</button>
+            <button class="btn prev" aria-label="Vídeo anterior">⏪ Anterior</button>
+            <button class="btn next" aria-label="Próximo vídeo">Próximo ⏩</button>
         </div>
     </section>
-    <section class="section-readmore">
-        <button class="custom-btn btn-11">Clique para ver mais!<div class="dot"></div></button>
+
+        <!-- Botão Veja Mais -->
+    <div class="section-buttonreadmore">
+        <button class="custom-btn btn-11" id="vejaMaisBtn">Clique para ver mais!<div class="dot"></div></button>
+    </div>
+
+    <!-- Segunda seção de vídeos (inicialmente oculta) -->
+    <section class="section-readmore" id="conteudoExtra" style="display: none;">
+        <section class="slider-container" data-video-group="2">
+            <div class="titleiframe">Confira alguns depoimentos de nossos clientes parceiros</div>
+            <div class="video-container">
+                <iframe class="video-frame" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen 
+                    title="Mais vídeos sobre energia solar" loading="lazy"></iframe>
+            </div>
+            <p class="video-description">Descrição do vídeo</p>
+            <div class="controls">
+                <button class="btn prev" aria-label="Vídeo anterior">⏪ Anterior</button>
+                <button class="btn next" aria-label="Próximo vídeo">Próximo ⏩</button>
+            </div>
+        </section>
+    </section>
+
+    <section class="carrossel-fila">
+        <h2>Nossos Projetos</h2>
+        <div class="carrossel-wrapper">
+            <div class="carrossel-container">
+                <div class="carrossel-track">
+                    <div class="carrossel-slide">
+                        <img src="./images/servicosconcluido/+ 1 PROJETO CONCLUIDO ALINE.jpg" alt="Projeto de energia solar 1" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="./images/servicosconcluido/+ 1 PROJETO CONCLUIDO ANA.jpg" alt="Projeto de energia solar 2" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="./images/servicosconcluido/+ 1 PROJETO CONCLUIDO GILZELIO.jpg" alt="Projeto de energia solar 3" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="./images/servicosconcluido/+ 1 PROJETO CONCLUIDO INACIA.jpg" alt="Projeto de energia solar 4" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="images/servicosconcluido/+ 1 PROJETO CONCLUIDO JOAO HENRIQUE.jpg" alt="Projeto de energia solar 1" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="images/servicosconcluido/+ 1 PROJETO CONCLUIDO JOSE GERONIMO.jpg" alt="Projeto de energia solar 2" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="images\servicosconcluido\+ 1 PROJETO CONCLUIDO LEOVERGILDA.jpg" alt="Projeto de energia solar 3" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="images\servicosconcluido\+ 1 PROJETO CONCLUIDO MARIA VALQUIRIA.jpg" alt="Projeto de energia solar 4" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="images\servicosconcluido\EDINALVA.jpg" alt="Projeto de energia solar 1" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="images\servicosconcluido\IOLANDA.jpg" alt="Projeto de energia solar 2" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="images\servicosconcluido\IVÂNIA.jpg" alt="Projeto de energia solar 3" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="images\servicosconcluido\JOAO ANDERSON SANTOS DE MORAIS.jpg" alt="Projeto de energia solar 4" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="images\servicosconcluido\JOÃO MARIA.jpg" alt="Projeto de energia solar 1" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="images\servicosconcluido\JOAO PAULO LUCENA.jpg" alt="Projeto de energia solar 2" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="images\servicosconcluido\JOCIEL MORAIS.jpg" alt="Projeto de energia solar 3" loading="lazy">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="images\servicosconcluido\JOSÉ DA COSTA.jpg" alt="Projeto de energia solar 4" loading="lazy">
+                    </div>
+                </div>
+            </div></div>
+        <div class="carrossel-dots"></div>
     </section>
 
     <section id="ondeestamos">
         <div>
-            <h1>Onde encontrar a consolida</h1>
+            <h1>Onde encontrar a Consolida</h1>
         </div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.405442371639!2d-37.20327102611561!3d-6.72027986570365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7af834f3fbddb0f%3A0x57ed891f364bdbef!2sConsolida%20Energia%20Solar!5e0!3m2!1spt-BR!2sbr!4v1740218815297!5m2!1spt-BR!2sbr" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.405442371639!2d-37.20327102611561!3d-6.72027986570365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7af834f3fbddb0f%3A0x57ed891f364bdbef!2sConsolida%20Energia%20Solar!5e0!3m2!1spt-BR!2sbr!4v1740218815297!5m2!1spt-BR!2sbr" 
+                width="100%" height="400" style="border:0;" allowfullscreen="" 
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                aria-label="Mapa da localização da Consolida Energia Solar"></iframe>
     </section>
+
     <section class="client-section">
         <div class="imglogofone">
-            <img src="./images/logo tel end emil.png" alt="" srcset="">
+            <img src="./images/logo tel end emil.png" alt="Contato Consolida" loading="lazy">
         </div>
         <div class="client-container">
             <div class="client-content">
@@ -138,19 +220,24 @@
         </div>
     </section>
 
-
     <footer>
-    <a href="https://wa.me/5584998227798"><img class="botaozap" src="./images/zap.png" alt="botao zap" srcset=""></a>
-    <div class="redesocialsection">
-        <h1>Confira mais conteudos em nossas redes de atendimento</h1>
-        <div class="redesocialicon">
-            <a target="_blank" href="https://www.instagram.com/consolidaenergiasolar/"><img src="./images/instagram.png" alt="instagram" srcset=""></a>
-            <!--<a href=""><img src="" alt="e-mail" srcset=""></a>-->
-            <a href="https://wa.me/5584998227798"><img src="./images/zap.png" alt="whatsapp" srcset=""></a>
+        <a href="https://wa.me/5584998227798" aria-label="WhatsApp da Consolida">
+            <img class="botaozap" src="./images/zap.png" alt="WhatsApp">
+        </a>
+        <div class="redesocialsection">
+            <h2>Confira mais conteúdos em nossas redes sociais!</h2>
+            <div class="redesocialicon">
+                <a target="_blank" href="https://www.instagram.com/consolidaenergiasolar/" aria-label="Instagram">
+                    <img src="./images/instagram.png" alt="Instagram">
+                </a>
+                <a href="https://wa.me/5584998227798" aria-label="WhatsApp">
+                    <img src="./images/zap.png" alt="WhatsApp">
+                </a>
+            </div>
         </div>
-    </div>
-        
-    <div class="footercopy"><p>&copy; 2025 Consolida Energia Solar CNPJ: 50.563.254/0001-96 - Todos os direitos reservados.</p></div>
+        <div class="footercopy">
+            <p>&copy; 2025 Consolida Energia Solar CNPJ: 50.563.254/0001-96 - Todos os direitos reservados.</p>
+        </div>
     </footer>
 </body>
-</ht
+</html>

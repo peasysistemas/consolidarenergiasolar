@@ -1,21 +1,50 @@
-/* 🔹 Configuração geral do site */
+/* ============================================= */
+/* 🔹 CONFIGURAÇÕES GERAIS DO SITE */
+/* ============================================= */
+
+/**
+ * Estilos base para o corpo do documento
+ * - Define a fonte padrão
+ * - Remove margens e paddings padrão
+ * - Configura box-sizing para border-box
+ * - Define cor de fundo e cor do texto
+ */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-color: #f0f0f0;
   color: #333;
+  line-height: 1.6;
+  overflow-x: hidden; /* Impede rolagem horizontal */
+    width: 100%; /* Garante que a página não ultrapasse a tela */
 }
 
-/* 🔹 Ajuste do cabeçalho */
+/* Ativa rolagem suave para navegação por âncoras */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Impede rolagem horizontal */
+    width: 100%; /* Garante que a página não ultrapasse a tela */
+}
+
+/* ============================================= */
+/* 🔹 CABEÇALHO E NAVEGAÇÃO */
+/* ============================================= */
+
+/**
+ * Estilo do cabeçalho fixo
+ * - Layout flexível para alinhamento dos itens
+ * - Posicionamento fixo no topo
+ * - Fundo transparente inicial
+ * - Transição suave para efeitos
+ */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 10px;
-  background-color: #e4e6fa00;
-  color: rgba(255, 255, 255, 0);
+  padding: 10px 20px;
+  background-color: rgba(228, 230, 250, 0);
   position: fixed;
   top: 0;
   width: 100%;
@@ -24,20 +53,40 @@ header {
   min-height: 50px;
 }
 
-/* 🔹 Estilização da logo */
+/**
+ * Estilo da logo
+ * - Altura inicial de 150px
+ * - Transição suave para efeito de redução
+ * - Margem à esquerda para espaçamento
+ */
 .logo img {
   height: 150px;
   width: auto;
   transition: height 0.3s;
-  margin-left: 50px;
+  margin-left: 20px;
 }
 
-/* efeito no menu nav*/
+/**
+ * Estilo da lista de navegação (desktop)
+ * - Remove marcadores de lista
+ * - Layout flexível para itens lado a lado
+ */
+nav {
+  display: none;
+}
 nav ul {
   list-style: none;
   display: flex;
+  margin: 0;
+  padding: 0;
 }
 
+/**
+ * Estilo dos links de navegação
+ * - Efeito gradiente no fundo
+ * - Bordas arredondadas
+ * - Transição para efeito hover
+ */
 nav ul li a {
   text-decoration: none;
   color: #fff;
@@ -46,31 +95,27 @@ nav ul li a {
   background: linear-gradient(30deg, #0004f1, #feb47b);
   border-radius: 25px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin: 0 5px;
 }
 
+/**
+ * Efeito hover nos links
+ * - Levanta ligeiramente o botão
+ * - Adiciona sombra
+ * - Aumenta ligeiramente o tamanho
+ */
 nav ul li a:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(12, 68, 250, 0.4);
-  scale: 1.2;
+  scale: 1.1;
 }
 
-/* 🔹 Estilização do menu */
-.menu ul {
-  display:none;
-  list-style: none;
-  padding: 20px;
-}
-
-.menu li a {
-  padding:15px 20px;
-  background-color: #181e50;
-  color: white;
-  margin-right: 10px;
-  border-radius: 10px;
-  text-decoration: none;
-}
-
-/* 🔹 Botão do menu hambúrguer */
+/**
+ * Botão do menu hambúrguer (inicialmente oculto)
+ * - Estilo simples sem bordas
+ * - Tamanho grande para fácil clique em mobile
+ * - Posicionamento fixo no canto direito
+ */
 .menu-toggle {
   display: none;
   font-size: 32px;
@@ -80,16 +125,25 @@ nav ul li a:hover {
   cursor: pointer;
   position: absolute;
   top: 12px;
-  right: 20px;
+  right: 40px;
   z-index: 1100;
   transition: transform 0.3s ease-in-out;
 }
 
+/* Efeito hover no botão do menu */
 .menu-toggle:hover {
   transform: scale(1.1);
 }
 
-/* 🔹 Redução do cabeçalho ao rolar a página */
+/* ============================================= */
+/* 🔹 EFEITO DE REDUÇÃO DO CABEÇALHO AO ROLAR */
+/* ============================================= */
+
+/**
+ * Classe aplicada via JavaScript quando a página é rolada
+ * - Reduz a altura da logo
+ * - Ajusta a altura do cabeçalho
+ */
 .header-small .logo img {
   height: 50px;
 }
@@ -98,21 +152,41 @@ nav ul li a:hover {
   height: 10px;
 }
 
-/* 🔹 Melhorando o Menu Mobile */
-@media (max-width: 768px) {
-  #header {
-    background-color: #f4f5ff00;
-  }
+/* ============================================= */
+/* 🔹 MENU MOBILE */
+/* ============================================= */
 
-  .logo {
-    margin: auto;
+@media (max-width: 1024px) {
+  /**
+   * Ajustes gerais para telas menores que 1024px
+   * - Fundo do cabeçalho transparente
+   * - Redução do tamanho da logo
+   * - Oculta o menu desktop
+   */
+  #header {
+    background-color: rgba(244, 245, 255, 0);
   }
 
   .logo img {
-    margin: auto;
-    height: 50px;
+    height: 80px;
   }
 
+  nav ul {
+    display: none;
+  }
+
+  /* Exibe o botão do menu hambúrguer */
+  .menu-toggle {
+    display: block;
+  }
+
+  /**
+   * Estilo do menu mobile
+   * - Posicionamento fixo fora da tela inicialmente
+   * - Largura de 80% com máximo de 300px
+   * - Fundo semi-transparente
+   * - Sombra para efeito de profundidade
+   */
   .menu {
     position: fixed;
     top: 0;
@@ -127,12 +201,15 @@ nav ul li a:hover {
     align-items: center;
     justify-content: center;
     transition: right 0.4s ease-in-out;
+    z-index: 1050;
   }
 
+  /* Classe aplicada via JavaScript para abrir o menu */
   .menu.menu-open {
     right: 0;
   }
 
+  /* Estilo da lista no menu mobile */
   .menu ul {
     display: flex;
     flex-direction: column;
@@ -143,10 +220,12 @@ nav ul li a:hover {
     text-align: center;
   }
 
+  /* Itens do menu mobile */
   .menu ul li {
     margin: 15px 0;
   }
 
+  /* Links do menu mobile */
   .menu ul li a {
     color: white;
     font-size: 20px;
@@ -155,32 +234,44 @@ nav ul li a:hover {
     padding: 12px 0;
     width: 100%;
     transition: background 0.3s ease-in-out;
+    background: none;
+    border-radius: 0;
   }
 
+  /* Efeito hover nos links do menu mobile */
   .menu ul li a:hover {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
-  }
-
-  /* Exibir botão do menu */
-  .menu-toggle {
-    display: block;
-    margin-right: 20px;
+    transform: none;
+    box-shadow: none;
+    scale: 1;
   }
 }
 
-/* 🔹 Estilização do slider */
+/* ============================================= */
+/* 🔹 SLIDER PRINCIPAL */
+/* ============================================= */
+
+/**
+ * Container do slider
+ * - Altura responsiva entre 100vh e 800px
+ * - Posicionamento relativo para elementos internos
+ * - Padding para não sobrepor o cabeçalho
+ */
 .slider {
   width: 100%;
-  min-height: 700px;
+  min-height: 100vh;
+  max-height: 800px;
   overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 30px;
+  padding: 80px 0 30px;
+  z-index: 1;
 }
 
+/* Container dos slides */
 .slides {
   position: absolute;
   top: 0;
@@ -189,6 +280,7 @@ nav ul li a:hover {
   height: 100%;
 }
 
+/* Estilo individual de cada slide */
 .slide {
   position: absolute;
   width: 100%;
@@ -199,6 +291,7 @@ nav ul li a:hover {
   transition: opacity 1s ease-in-out;
 }
 
+/* Overlay escuro sobre o slider para melhor legibilidade */
 .slider::before {
   content: "";
   position: absolute;
@@ -210,37 +303,52 @@ nav ul li a:hover {
   z-index: 1;
 }
 
-/* 🔹 Estilizando o conteúdo (texto e formulário) */
+/* ============================================= */
+/* 🔹 CONTEÚDO DO SLIDER (TEXTO E FORMULÁRIO) */
+/* ============================================= */
+
+/**
+ * Container do conteúdo
+ * - Posicionamento relativo para z-index
+ * - Layout flexível para dividir texto e formulário
+ * - Largura de 90% com máximo de 1200px
+ */
 .content {
   position: relative;
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 90%;
   max-width: 1200px;
   z-index: 2;
   color: white;
   padding: 40px 0;
+  margin-top: 50px;
 }
 
+/* Seção de texto */
 .texto {
-  width: 50%;
+  width: 55%;
+  padding-right: 20px;
 }
 
+/* Título com tamanho responsivo usando clamp() */
 .texto h2 {
-  font-size: 36px;
+  font-size: clamp(28px, 3vw, 36px);
   margin-bottom: 20px;
   font-weight: bold;
 }
 
+/* Parágrafo com tamanho responsivo */
 .texto p {
-  font-size: 18px;
+  font-size: clamp(16px, 2vw, 18px);
   line-height: 1.6;
   text-align: justify;
 }
 
+/* Container do formulário */
 .formulario {
   width: 40%;
-  max-height: 300px;
+  max-width: 400px;
   background: rgba(255, 255, 255, 0.15);
   padding: 25px;
   border-radius: 10px;
@@ -251,15 +359,18 @@ nav ul li a:hover {
   transition: transform 0.3s ease-in-out;
 }
 
+/* Efeito hover no formulário */
 .formulario:hover {
   transform: translateY(-10px);
 }
 
+/* Estilo do formulário */
 form {
   display: flex;
   flex-direction: column;
 }
 
+/* Campos de entrada */
 form input,
 form textarea {
   margin-bottom: 12px;
@@ -271,11 +382,13 @@ form textarea {
   color: white;
 }
 
+/* Placeholders dos campos */
 form input::placeholder,
 form textarea::placeholder {
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* Botão de envio */
 form button {
   background: #ffcc00;
   color: #181e50;
@@ -288,77 +401,130 @@ form button {
   transition: background 0.3s ease-in-out;
 }
 
+/* Efeito hover no botão */
 form button:hover {
   background: #66ff00;
 }
 
-/* 🔹 Responsividade */
+/* ============================================= */
+/* 🔹 RESPONSIVIDADE PARA TABLETS E MOBILE */
+/* ============================================= */
+
 @media (max-width: 768px) {
+  /**
+   * Ajustes para telas menores que 768px
+   * - Altura automática para o slider
+   * - Padding ajustado
+   */
+  .slider {
+    min-height: auto;
+    padding: 100px 0 30px;
+  }
+  
+  /* Conteúdo em coluna */
   .content {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin-top: 30px;
+    padding: 20px 0;
   }
 
+  /* Texto e formulário ocupam 100% da largura */
   .texto, .formulario {
     width: 100%;
-    margin-bottom: 10px;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+
+  /* Centraliza o texto */
+  .texto {
+    text-align: center;
+  }
+
+  /* Centraliza parágrafos */
+  .texto p {
+    text-align: center;
+  }
+
+  /* Formulário ocupa toda largura */
+  .formulario {
+    max-width: 80%;
+    padding: 10px 10px;
   }
 }
 
-header {
-  padding: 20px;
+/* Ajustes para telas muito pequenas (menos de 480px) */
+@media (max-width: 480px) {
+  /* Reduz ainda mais a logo */
+  .logo img {
+    height: 60px;
+    margin-left: 10px;
+  }
+
+  /* Ajusta largura do conteúdo */
+  .content {
+    width: 95%;
+  }
+
+  /* Reduz tamanho do título */
+  .texto h2 {
+    font-size: 24px;
+  }
+
+  /* Reduz tamanho do parágrafo */
+  .texto p {
+    font-size: 16px;
+  }
 }
 
-.content {
-  top: 60px;
-}
+/* ============================================= */
+/* 🔹 SEÇÕES "SOBRE A EMPRESA" */
+/* ============================================= */
 
-/* 🔹 Ajuste para não cobrir o conteúdo */
-section {
-  min-height: 100px;
-}
-
-/* 🔹 Rolagem suave */
-html {
-  scroll-behavior: smooth;
-}
-
-/* 🔹 Estilo geral das seções */
+/**
+ * Estilo base das seções
+ * - Padding vertical para espaçamento
+ * - Layout flexível centralizado
+ */
 .sobre-empresa {
   position: relative;
   width: 100%;
-  height: 400px;
-  overflow: hidden;
+  padding: 60px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f9f9f9; /* Cor de fundo de fallback */
+  background-color: #f9f9f9;
 }
 
+/* Container interno para alinhamento */
 .sobre-empresa .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 1200px;
-  width: 100%;
-  padding: 0 20px;
+  width: 90%;
+  margin: 0 auto;
 }
 
+/* Seção de texto */
 .sobre-empresa .texto {
   width: 50%;
+  padding-right: 30px;
   opacity: 0;
-  transform: translateX(-100%); /* Começa fora da tela, à esquerda */
+  transform: translateX(-100%);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
+/* Seção de imagem */
 .sobre-empresa .imagem {
   width: 45%;
   opacity: 0;
-  transform: translateX(100%); /* Começa fora da tela, à direita */
+  transform: translateX(100%);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
+/* Estilo da imagem */
 .sobre-empresa .imagem img {
   width: 100%;
   height: auto;
@@ -366,146 +532,73 @@ html {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Classes aplicadas via JavaScript quando a seção é visível */
 .sobre-empresa.visible .texto,
 .sobre-empresa.visible .imagem {
   opacity: 1;
-  transform: translateX(0); /* Move para a posição original */
+  transform: translateX(0);
 }
 
+/* Título com tamanho responsivo */
 .sobre-empresa h2 {
-  font-size: 36px;
+  font-size: clamp(28px, 3vw, 36px);
   margin-bottom: 20px;
   color: #181e50;
 }
 
+/* Parágrafo com tamanho responsivo */
 .sobre-empresa p {
-  font-size: 18px;
+  font-size: clamp(16px, 2vw, 18px);
   line-height: 1.6;
   color: #333;
 }
 
-/* 🔹 Estilo para mobile (telas menores que 768px) */
-@media (max-width: 768px) {
-  .logo {
-    margin-left: 20px; /* Ajuste o valor conforme necessário */
-    margin-right: auto; /* Empurra a logo para a esquerda */
-}
+/* ============================================= */
+/* 🔹 AJUSTES PARA MOBILE (SOBRE A EMPRESA) */
+/* ============================================= */
 
-.menu-toggle {
-    margin-left: auto; /* Mantém o botão do menu no canto direito */
-    margin-right: 20px; /* Ajuste o valor conforme necessário */
-    position: absolute;
-}
+@media (max-width: 768px) {
+  /* Reduz padding */
   .sobre-empresa {
-    height: auto; /* Altura automática para se ajustar ao conteúdo */
-    flex-direction: column; /* Empilha os elementos verticalmente */
+    padding: 40px 0;
   }
 
+  /* Layout em coluna */
   .sobre-empresa .container {
     flex-direction: column;
     text-align: center;
+    width: 90%;
   }
 
+  /* Texto e imagem ocupam 100% da largura */
   .sobre-empresa .texto,
   .sobre-empresa .imagem {
-    width: 80%;
-    margin-bottom: 20px;
-  }
-
-  .sobre-empresa .imagem {
-    display: none; /* Esconde a imagem no mobile */
-  }
-
-  .sobre-empresa .texto {
-    opacity: 1; /* Mantém o texto visível */
-    transform: translateX(0); /* Remove o deslize no mobile */
-  }
-
-  /* Transforma a imagem em fundo da seção no mobile */
-  .sobre-empresa {
-    background-size: cover;
-    background-position: center;
-  }
-
-  #sobre-empresa {
-    background-image: url('./images/img1.jpeg'); /* Imagem de fundo para a primeira seção */
-  }
-
-  #nova-secao {
-    background-image: url('./images/img2.jpeg'); /* Imagem de fundo para a segunda seção */
-  }
-
-  .sobre-empresa::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(24, 30, 80, 0.7); /* Overlay escuro para melhorar a legibilidade */
-    z-index: 1;
+    padding: 0;
+    margin-bottom: 30px;
   }
 
-  .sobre-empresa .container {
-    position: relative;
-    z-index: 2;
-    color: white; /* Texto branco para contrastar com o fundo */
+  /* Mantém texto visível */
+  .sobre-empresa .texto {
+    opacity: 1;
+    transform: translateX(0);
   }
 
-  .sobre-empresa h2,
-  .sobre-empresa p {
-    color: white; /* Garante que o texto seja legível sobre o fundo */
-  }
-}
-/* efeito botao zap footer */
-.botaozap {
-  width: 80px;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  margin: 10px;
-  z-index: 2000;
-}
-/* 🔹 Efeito pulsar */
-@keyframes pulsar {
-  0% {
-      transform: scale(1); /* Tamanho normal */
-  }
-  50% {
-      transform: scale(1.1); /* Aumenta o tamanho em 10% */
-  }
-  100% {
-      transform: scale(1); /* Volta ao tamanho normal */
+  /* Coloca a imagem antes do texto */
+  .sobre-empresa .imagem {
+    order: -1;
   }
 }
 
-/* 🔹 Aplicando o efeito à imagem */
-.botaozap {
-  animation: pulsar 2s infinite; /* Duração de 2 segundos, repetição infinita */
-  transition: transform 0.3s ease-in-out; /* Transição suave */
-}
+/* ============================================= */
+/* 🔹 SEÇÃO DE ESTATÍSTICAS */
+/* ============================================= */
 
-/* 🔹 Efeito ao passar o mouse */
-.botaozap:hover {
-  animation: none; /* Para a animação ao passar o mouse */
-  transform: scale(1.2); /* Aumenta o tamanho em 10% */
-}
-
-/* dados da empresa */
-#ondeestamos {
-  display: flex;
-  flex-direction: column;align-items: center;
-}
-#ondeestamos h1 {
-  margin: 20px;
-}
-
-/* 🔹 Estilo da seção de estatísticas */
 .stats-section {
-  background-color: #f9f9f9; /* Cor de fundo */
+  background-color: #181e50;
   padding: 60px 20px;
   text-align: center;
-  background-color: #181e50;
+  margin-top: 10px;
 }
 
 .stats-container {
@@ -518,6 +611,7 @@ html {
 
 .stat-item {
   flex: 1;
+  min-width: 200px;
   margin: 20px;
   padding: 20px;
   background-color: #fff;
@@ -533,7 +627,7 @@ html {
 
 .stat-value {
   font-size: 36px;
-  color: #181e50; /* Cor do tema */
+  color: #181e50;
   margin-bottom: 10px;
 }
 
@@ -542,33 +636,28 @@ html {
   color: #666;
 }
 
-/* 🔹 Responsividade */
-@media (max-width: 768px) {
-  .stats-container {
-      flex-direction: column;
-  }
+/* ============================================= */
+/* 🔹 SEÇÃO DE CLIENTES */
+/* ============================================= */
 
-  .stat-item {
-      margin: 10px 0;
-  }
-}
-
-
-/* 🔹 Estilo da seção de clientes */
 .client-section {
-  display: flex;
   align-items: center;
-  background-color: #181e50; /* Cor de fundo escura */
+  background-color: #181e50;
   padding: 60px 20px;
   text-align: center;
-  color: #fff; /* Texto branco */
+  color: #fff;
 }
+
 .client-section img {
-  width:60%;
+  width: 40%;
   margin: 10px;
 }
+
 .imglogofone {
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .client-container {
@@ -595,7 +684,7 @@ html {
 }
 
 .client-button {
-  background-color: #ff9215; /* Cor laranja */
+  background-color: #ff9215;
   color: #fff;
   padding: 15px 30px;
   font-size: 18px;
@@ -605,81 +694,111 @@ html {
 }
 
 .client-button:hover {
-  background-color: #e07a00; /* Cor laranja mais escura */
+  background-color: #51b301;
   transform: translateY(-5px);
 }
 
-/* 🔹 Responsividade */
-@media (max-width: 768px) {
-  .client-title {
-      font-size: 28px;
-  }
-  .client-section {
-    display: flex;
-    flex-direction: column;
-  }
+/* ============================================= */
+/* 🔹 RODAPÉ */
+/* ============================================= */
 
-  .client-description {
-      font-size: 20px;
-  }
-
-  .client-button {
-      font-size: 16px;
-      padding: 12px 24px;
-  }
+footer {
+  position: relative;
+  padding: 20px 0;
+  background-color: #f0f0f0;
 }
 
-/* 🔹 Estilo da seção de redes sociais */
-.titleiframe {
-  font-weight: bold;
-  margin: 20px;
-  font-size: 25px;
+/* Botão do WhatsApp fixo */
+.botaozap {
+  width: 80px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+  z-index: 2000;
+  animation: pulsar 2s infinite;
+  transition: transform 0.3s ease-in-out;
 }
+
+/* Efeito de pulsar */
+@keyframes pulsar {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Efeito hover no botão do WhatsApp */
+.botaozap:hover {
+  animation: none;
+  transform: scale(1.2);
+}
+
+/* Seção de redes sociais */
 .redesocialsection {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  margin: 20px 0;
 }
+
 .redesocialsection img {
-  display: flex;
   height: 50px;
   margin: 0 15px;
 }
+
 .redesocialicon {
   display: flex;
-  margin: auto;
+  margin: 20px auto;
 }
+
+/* Texto de copyright */
 .footercopy {
   text-align: center;
+  padding: 10px;
+  font-size: 14px;
 }
+
+/* ============================================= */
+/* 🔹 SEÇÃO DE VÍDEOS */
+/* ============================================= */
 
 .slider-container {
   text-align: center;
-  background: #f0f0f0;
   padding: 20px;
+  margin: 20px auto;
+  max-width: 1200px;
   border-radius: 12px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Estilização do vídeo */
-#video-container {
+.titleiframe {
+  font-weight: bold;
+  margin: 20px;
+  font-size: 25px;
+}
+
+.video-container {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-}
-#video-container iframe {
- height: 400px;
-
+  margin: 0 auto;
+  max-width: 800px;
 }
 
-.description {
+.video-frame {
+  width: 100%;
+  height: 400px;
+  border: none;
+}
+
+.video-description {
   font-size: 16px;
   margin-top: 10px;
   font-weight: bold;
 }
 
-/* Estilização dos botões */
+/* Controles de navegação */
 .controls {
   margin-top: 15px;
   display: flex;
@@ -688,7 +807,7 @@ html {
 }
 
 .btn {
-  background: linear-gradient(135deg, #181e50,#285275);
+  background: linear-gradient(135deg, #181e50, #285275);
   border: none;
   padding: 12px 20px;
   border-radius: 30px;
@@ -698,9 +817,6 @@ html {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   box-shadow: 0px 4px 10px rgba(255, 75, 43, 0.3);
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
 
 .btn:hover {
@@ -712,82 +828,191 @@ html {
   transform: scale(0.95);
 }
 
-.prev::before {
-  content: "⏪";
+/* ============================================= */
+/* 🔹 BOTÃO "VEJA MAIS" */
+/* ============================================= */
+
+.section-readmore {
+  justify-content: center;
+  align-items: center;
+  background-color: #181e50;
+  color: #f0f0f0;
+  padding: 20px 0;
 }
 
-.next::after {
-  content: "⏩";
+.section-buttonreadmore {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.btn-11 {
+  border: none;
+  margin: 20px;
+  border-radius: 5px;
+  background: linear-gradient(0deg, rgba(251,33,117,1) 0%, rgba(234,76,137,1) 100%);
+  color: #fff;
+  overflow: hidden;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+}
+
+.btn-11:hover {
+  opacity: .7;
+}
+
+.btn-11:active {
+  box-shadow: 4px 4px 6px 0 rgba(255,255,255,.3),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+              inset -4px -4px 6px 0 rgba(255,255,255,.2),
+              inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+/* Efeito brilhante ao passar o mouse */
+.btn-11:before {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background-color: #fff;
+  animation: shiny-btn1 3s ease-in-out infinite;
+}
+
+@keyframes shiny-btn1 {
+  0% { transform: scale(0) rotate(45deg); opacity: 0; }
+  80% { transform: scale(0) rotate(45deg); opacity: 0.5; }
+  81% { transform: scale(4) rotate(45deg); opacity: 1; }
+  100% { transform: scale(50) rotate(45deg); opacity: 0; }
+}
+
+/* ============================================= */
+/* 🔹 MAPA */
+/* ============================================= */
+
+#ondeestamos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+}
+
+#ondeestamos h1 {
+  margin: 20px;
+  font-size: 32px;
+  color: #181e50;
+}
+
+#ondeestamos iframe {
+  width: 90%;
+  max-width: 1000px;
+  height: 400px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================= */
+/* 🔹 CARROSSEL COM IMAGENS COMPLETAS - VERSÃO FINAL */
+/* ============================================= */
+
+.carrossel-fila {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 20px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.carrossel-fila h2 {
+  font-size: 2.5rem;
+  color: #181e50;
+  margin-bottom: 30px;
+}
+
+.carrossel-wrapper {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.carrossel-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.carrossel-track {
+  display: flex;
+  transition: transform 0.6s ease;
+  gap: 20px;
+  padding: 10px 0;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.carrossel-slide {
+  flex: 0 0 auto;
+  width: auto; /* Largura fixa para cada slide */
+  height: 450px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carrossel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Indicadores */
+.carrossel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.carrossel-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carrossel-dots .dot.active {
+  background: #ff9215;
+  transform: scale(1.3);
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+  .carrossel-slide {
+      height: 450px;
+  }
+}
+
+@media (max-width: 992px) {
+  .carrossel-slide {
+      height: 440px;
+  }
 }
 
 @media (max-width: 768px) {
-  .slider-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .carrossel-slide {
+      height: 90vh;
   }
-  #video-container {
-      max-width: 90%; /* Ocupa quase toda a tela */
-  }
-
-  #video-frame {
-    min-height: 400px;
-      
-  }
-
-  .controls button {
-      font-size: 14px;
-      padding: 10px;
+  
+  .carrossel-track {
+      gap: 20px;
   }
 }
-
-/* 11 */
-
-.section-readmore {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-}
-.btn-11 {  
-  height: 40px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background: rgb(251,33,117);
-    background: linear-gradient(0deg, rgba(251,33,117,1) 0%, rgba(234,76,137,1) 100%);
-    color: #fff;
-    overflow: hidden;
-}
-.btn-11:hover {
-    text-decoration: none;
-    color: #fff;
-}
-.btn-11:before {
-    position: absolute;
-    content: '';
-    display: inline-block;
-    top: -180px;
-    left: 0;
-    width: 30px;
-    height: 100%;
-    background-color: #fff;
-    animation: shiny-btn1 3s ease-in-out infinite;
-}
-.btn-11:hover{
-  opacity: .7;
-}
-.btn-11:active{
-  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
-              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
-}
-
-
-@-webkit-keyframes shiny-btn1 {
-    0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
-    80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
-    81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
-    100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
-}
-
