@@ -459,3 +459,31 @@ document.addEventListener("DOMContentLoaded", function() {
     // Iniciar carrossel quando a página carregar
     initCarrossel();
 });
+
+const video = document.getElementById('smartVideo');
+const unmuteBtn = document.getElementById('unmute-btn');
+
+// Observador de visibilidade
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      video.play().then(() => {
+        // Sucesso
+      }).catch(() => {
+        // Falhou (autoplay com som foi bloqueado)
+        unmuteBtn.style.display = 'block';
+      });
+    } else {
+      video.pause();
+    }
+  });
+}, { threshold: 0.5 });
+
+observer.observe(video);
+
+// Botão ativa som e some
+unmuteBtn.addEventListener('click', () => {
+  video.muted = false;
+  video.play();
+  unmuteBtn.style.display = 'none';
+});
